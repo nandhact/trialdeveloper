@@ -4,11 +4,11 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <style>
 .monthcell{
-box-sizing: border-box;
-overflow-y: auto;
-   display: block;
-   scrollbar:hidden;
-   max-height: 100px;; 
+	box-sizing: border-box;
+	overflow-y: auto;
+   	display: block;
+   	scrollbar:hidden;
+   	max-height: 100px;; 
 }
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
@@ -35,11 +35,11 @@ overflow-y: auto;
 }
 div.scrollable
 {
-width:100%;
-height: 150px;
-margin: 0;
-padding: 0;
-overflow-y: scroll
+	width:100%;
+	height: 150px;
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll
 }
 .selectDay{
 	left:0px;
@@ -78,7 +78,7 @@ overflow-y: scroll
 }
 
 </style>
-<body onload="onloadfn()">
+<body onload="onloadfn(new Date())">
 <div id="selectrow" class="selectrow" width="700px" height="90px";  class="" style="width:700px;height:90px;left:15%;top:20px;position:absolute">
 <select id="selectDay"  style="height:30px;top:5px;" class="selectDay">
 </select id="selectMonth">
@@ -130,9 +130,9 @@ overflow-y: scroll
 <script src="http://code.jquery.com/jquery-1.7.js" 
             type="text/javascript"></script>
 <script>
-function onloadfn() {
-	document.getElementById("selCalType").value='month';
-	var d = new Date();
+function onloadfn(d) {
+	document.getElementById("selCalType").value='day';
+	
 	document.getElementById("selDate").value=d; 
 	document.getElementById("selectMonth").value = d.getMonth();
 	document.getElementById("selectDay").value = d.getDate();
@@ -338,10 +338,7 @@ function myFunction(calType) {
 				col.style.fontWeight ='25px';
 				col.innerHTML = '<font size="3" color="#FFFFFF"><b>'+weekdays[colnum]+'</b></font>';
 				col.style.textAlign='center';
-				col.onclick=function(){
-					alert('hiii');
-					};
-				}
+		}
 		
 
 	}else if(calType =='week'){
@@ -526,11 +523,8 @@ function loadMeetingsTocell(){
 	for(var i=0;i<data["ReservationList"].length;i++){
 		var booking = data["ReservationList"][i];
 		
-		alert(booking.startDate);
 		var meetStrtDte = new Date(booking.startDate);
-		alert(meetStrtDte);
 		var key = meetStrtDte.getDate()+"-"+ meetStrtDte.getMonth()+"-"+meetStrtDte.getFullYear();
-		alert(key);
 		var list =  new Array();
 		if(meetMap[key] == null){
 			meetMap[key]=list;
@@ -564,9 +558,7 @@ function loadMeetingsTocell(){
 				newDiv.style.position='absolute';
 				newDiv.style.textAlign='center';
 				newDiv.style.verticalAlign='middle';
-				newDiv.onclick = function () {
-					alert('hiiii');
-				};
+				
 				col1.appendChild(newDiv);
 			}
 		}
@@ -638,8 +630,8 @@ function loadMeetingsTocell(){
 				col.style.align='left';
 				col.innerHTML = d.getDate();
 				col.onclick = function () {
-					alert('hiiii');
 					
+					onloadfn (d);
 				};
 				col.style.maxHeight='100px';
 				

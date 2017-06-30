@@ -1,15 +1,16 @@
 package net.codejava.spring.dao;
  
 import java.util.List;
- 
-import net.codejava.spring.model.Reservation;
- 
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import net.codejava.spring.model.Conference;
+import net.codejava.spring.model.Reservation;
  
 @Repository
 public class ReservationDAOImpl implements ReservationDAO {
@@ -48,7 +49,16 @@ public class ReservationDAOImpl implements ReservationDAO {
         reservationToDelete.setResid(resid);
         sessionFactory.getCurrentSession().delete(reservationToDelete);
     }
+    @Override
+    @Transactional
+    public List<Conference> getConfRooms(){
+        @SuppressWarnings("unchecked")
+    	List<Conference> listConference = (List<Conference>) sessionFactory.getCurrentSession()
+                .createCriteria(Conference.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
  
+        return listConference;
+    }
     @Override
     @Transactional
     public Reservation get(int resid) {

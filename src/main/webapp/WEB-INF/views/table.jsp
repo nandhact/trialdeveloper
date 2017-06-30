@@ -509,10 +509,7 @@ function loadMeetings() {
 				data:{},
 				jsonpCallback: 'apiStatus',
 				success: function(data) {
-					alert(data);
-					alert(JSON.stringify(data));
 					document.getElementById("meetingmap").value = JSON.stringify(data);
-					
 					loadMeetingsTocell();
 			
 				},
@@ -528,10 +525,12 @@ function loadMeetingsTocell(){
 	var meetMap = {};
 	for(var i=0;i<data["ReservationList"].length;i++){
 		var booking = data["ReservationList"][i];
-		alert(booking);
-		alert(JSON.parse(booking));
+		
+		alert(booking.startDate);
 		var meetStrtDte = new Date(booking.startDate);
+		alert(meetStrtDte);
 		var key = meetStrtDte.getDate()+"-"+ meetStrtDte.getMonth()+"-"+meetStrtDte.getFullYear();
+		alert(key);
 		var list =  new Array();
 		if(meetMap[key] == null){
 			meetMap[key]=list;

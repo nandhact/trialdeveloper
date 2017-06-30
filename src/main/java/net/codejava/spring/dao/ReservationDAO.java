@@ -2,6 +2,7 @@ package net.codejava.spring.dao;
 
 import java.util.List;
 
+import net.codejava.spring.model.Conference;
 import net.codejava.spring.model.Reservation;
 
 public interface ReservationDAO {
@@ -11,5 +12,5 @@ public interface ReservationDAO {
 	    public void saveOrUpdate(Reservation reservation);
 	    public void delete(int resid);
 	    public List<Reservation> getReservationBetween(String date1, String date2);
-	 
+	    public List<Conference> getConfRooms();
 }

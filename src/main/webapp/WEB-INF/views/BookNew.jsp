@@ -49,11 +49,11 @@ function test(){
 </th></tr></table>
 </form:form>
 
-                    <br/><br/>Start date <input type="text" id="dt1" name="date1" /><br/><br/>
+                    <!--  <br/><br/>Start date <input type="text" id="dt1" name="date1" /><br/><br/>
                     End date <input type="text" id="dt2" name="date2" />
                     <% String date1 = request.getParameter("date1");%>
                     <% String date2 = request.getParameter("date2");%>
-        <h2><a href="#" onclick="test()">Reservation List</a></h2>
+        <h2><a href="#" onclick="test()">Reservation List</a></h2>-->
 
 </body>
 </html>

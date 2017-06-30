@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.codejava.spring.dao.ReservationDAO;
 import net.codejava.spring.dao.ReservationDAOImpl;
+import net.codejava.spring.model.Conference;
 import net.codejava.spring.model.Reservation;
 @Controller
 public class ReservationController {
@@ -54,6 +55,22 @@ public class ReservationController {
     	json.put("ReservationList", arr);
     	return new ResponseEntity("apiStatus("+json.toString()+")", HttpStatus.OK);
     }
+
+	@RequestMapping (value="/listConfRoom",method=(RequestMethod.GET), produces=MediaType.APPLICATION_JSON_VALUE)
+	 	 public ResponseEntity<?> listConfRoom() {
+	    	List<Conference> listConfRooms = reservationDao.getConfRooms();
+	    	JSONArray arr = new JSONArray();
+	    	for(Conference res : listConfRooms){
+	    		JSONObject json = new JSONObject();
+	    		json.put("id", res.getConid());
+				json.put("name", res.getRoom_name());
+	        	arr.add(json);
+	    	}
+	    	JSONObject json = new JSONObject();
+	    	json.put("RoomList", arr);
+	    	return new ResponseEntity("apiStatus("+json.toString()+")", HttpStatus.OK);
+	    }
+	
 	@RequestMapping(value="/BookNew", method = RequestMethod.GET)
     public ModelAndView booknew(){
 		ModelAndView model = new ModelAndView("BookNew");
@@ -69,6 +86,7 @@ public class ReservationController {
         model.addObject("reservationList", listReservations);
         return model;
     }
+	
 	@RequestMapping(value = "/BookEdit", method = RequestMethod.GET)
     public ModelAndView editReservation(HttpServletRequest request) {
         int resid = Integer.parseInt(request.getParameter("resid"));
@@ -77,18 +95,17 @@ public class ReservationController {
         model.addObject("reservation", reservation);
         return model;      
     }
+	
 	@RequestMapping(value = "/BookDelete", method = RequestMethod.GET)
     public ModelAndView deleteReservation(HttpServletRequest request) {
         int resId = Integer.parseInt(request.getParameter("resid"));
         reservationDao.delete(resId);
         return new ModelAndView("redirect:/table");     
     }
-     
+	
     @RequestMapping(value = "/BookSave", method = RequestMethod.POST)
     public ModelAndView saveReservation(@ModelAttribute Reservation reservation) {
     	reservationDao.saveOrUpdate(reservation);
         return new ModelAndView("redirect:/table");
     }
-	
-    
 }

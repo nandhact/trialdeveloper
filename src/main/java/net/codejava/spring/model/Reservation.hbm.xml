@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.codejava.spring.model">
+    <class name="Reservation" table="RESERVATION_DETL">
+        <id name="resid" column="RES_ID">
+            <generator class="native"/>
+        </id>
+        <property name="userid" column="USER_ID" />
+        <property name="date" column="DATE" />
+        <property name="start_time" column="START_TIME" />
+        <property name="duration" column="DURATION" />
+        <property name="meeting_name" column="MEETING_NAME" />
+    </class> 
+</hibernate-mapping>

@@ -8,5 +8,6 @@
     <property name="show_sql">true</property> 
     <mapping resource="net/codejava/spring/model/User.hbm.xml"/>
     <mapping resource="net/codejava/spring/model/Reservation.hbm.xml"/>
+    <mapping resource="net/codejava/spring/model/Conference.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

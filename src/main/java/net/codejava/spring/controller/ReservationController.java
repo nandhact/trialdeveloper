@@ -1,6 +1,8 @@
 package net.codejava.spring.controller;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,13 +40,19 @@ public class ReservationController {
     	JSONArray arr = new JSONArray();
     	for(Reservation res : listReservations){
     		JSONObject json = new JSONObject();
-        	json.put("startDate", res.getDate());
+    		SimpleDateFormat frmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        	try {
+				json.put("startDate", frmt.parse(res.getDate()+" "+res.getStart_time()).getTime());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	json.put("duration", res.getDuration());
         	arr.add(json);
     	}
     	JSONObject json = new JSONObject();
     	json.put("ReservationList", arr);
-    	return new ResponseEntity(json.toString(), HttpStatus.OK);
+    	return new ResponseEntity("apiStatus("+json.toString()+")", HttpStatus.OK);
     }
 	@RequestMapping(value="/BookNew", method = RequestMethod.GET)
     public ModelAndView booknew(){

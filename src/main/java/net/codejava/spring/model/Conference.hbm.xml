@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.codejava.spring.model">
+    <class name="Conference" table="CONFERENCE_ROOM">
+        <id name="conid" column="CON_ID">
+            <generator class="native"/>
+        </id>
+        <property name="room_name" column="ROOM_NAME" />
+        <property name="room_desc" column="ROOM_DESC" />
+          </class> 
+</hibernate-mapping>
